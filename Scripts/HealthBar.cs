@@ -7,10 +7,8 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Character _character;
-    [SerializeField] private float _animationSpeed;
 
     private Slider _healthbar;
-    private Coroutine _healbarAnimation;
 
     private void Awake()
     {
@@ -30,19 +28,6 @@ public class HealthBar : MonoBehaviour
 
     private void OnValueChanget(float health, float maxHealth)
     {
-        if(_healbarAnimation != null)
-        StopCoroutine(_healbarAnimation);
-
-         _healbarAnimation = StartCoroutine(HealthbarAnimation(health / maxHealth));
-    }
-
-    private IEnumerator HealthbarAnimation(float targetValue)
-    {
-        while(_healthbar.value != targetValue)
-        {
-            _healthbar.value = Mathf.Clamp(targetValue, _healthbar.minValue, _healthbar.maxValue);
-
-            yield return null;
-        }
+        _healthbar.value = Mathf.Clamp(health / maxHealth, _healthbar.minValue, _healthbar.maxValue);
     }
 }
