@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Slider))]
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Character _character;
@@ -39,7 +40,7 @@ public class HealthBar : MonoBehaviour
     {
         while(_healthbar.value != targetValue)
         {
-            _healthbar.value = Mathf.Lerp(_healthbar.value, targetValue, _animationSpeed * Time.deltaTime);
+            _healthbar.value = Mathf.Clamp(targetValue, 0, 1);
 
             yield return null;
         }

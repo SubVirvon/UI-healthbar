@@ -32,7 +32,7 @@ public class Character : MonoBehaviour
 
         if (_health > _maxHealth)
             _health = _maxHealth;
-        else
-            HealthChanged?.Invoke(_health, _maxHealth);
+
+        HealthChanged?.Invoke(_health, _maxHealth);
     }
 }
