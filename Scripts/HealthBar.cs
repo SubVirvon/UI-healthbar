@@ -40,7 +40,7 @@ public class HealthBar : MonoBehaviour
     {
         while(_healthbar.value != targetValue)
         {
-            _healthbar.value = Mathf.Clamp(targetValue, 0, 1);
+            _healthbar.value = Mathf.Clamp(targetValue, _healthbar.minValue, _healthbar.maxValue);
 
             yield return null;
         }
